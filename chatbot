@@ -1,25 +1,29 @@
-import nltk
-from nltk.chat.util import Chat, reflections
+# Define the chatbot's responses
+responses = {
+    "hello": "Hello, how can I assist you?",
+    "whats your name?": "My name is Chatbot.",
+    "how are you?": "I'm doing well, thank you!",
+    "default": "I'm sorry, but I don't understand. Can you please rephrase your question?",
+    "weather report today?" : "it is sunny today",
+    "thankyou, bye!" : "bye, have a nice day",
+    "what remedies i need to take?" : "drink a lot of water and carry an umbrella while stepping out",
+    "quit" : "thankyou!!"
+}
 
-# Define patterns and responses for the chatbot
-patterns = [
-    (r"hi|hello|hey", ["Hello!", "Hi there! How can I help you?"]),
-    (r"bye|goodbye", ["Goodbye!", "See you later!"]),
-    (r"my name is (.*)", ["Hello, %1! How can I assist you?"]),
-    (r"(.*) (weather|forecast)", ["The weather is sunny today."]),
-    (r"(.*) help (.*)", ["Sure, I can help. What do you need assistance with?"]),
-    (r"(.*) (remedies)", ["drink lot of water and use umbrella while going out."])
-    # Add more patterns and responses as needed
-]
+# Function to generate a chatbot response
+def generate_response(message):
+    # Convert the message to lowercase
+    message = message.lower()
 
-# Create a chatbot using the defined patterns
-chatbot = Chat(patterns, reflections)
+    # Check if the message matches any predefined patterns
+    if message in responses:
+        return responses[message]
+    else:
+        return responses["default"]
 
-# Start the conversation with the user
-print("Chatbot: Hello! How can I assist you today?")
+# Main loop to receive and respond to user input
 while True:
     user_input = input("User: ")
-    if user_input.lower() == "quit":
-        break
-    response = chatbot.respond(user_input)
+    response = generate_response(user_input)
     print("Chatbot:", response)
+
