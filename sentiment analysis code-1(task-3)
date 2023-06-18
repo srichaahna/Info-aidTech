@@ -1,0 +1,10 @@
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+
+nltk.download('vader_lexicon')
+sid=SentimentIntensityAnalyzer()
+
+text=" i really enjoy my vacation. beach is so beautiful "
+scores = sid.polarity_scores(text)
+
+print(scores)
