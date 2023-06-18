@@ -1,0 +1,25 @@
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+
+# Initialize the sentiment analyzer
+sia = SentimentIntensityAnalyzer()
+
+# Example sentence
+sentence = "I love this product! It's amazing."
+
+# Analyze the sentiment of the sentence
+sentiment_scores = sia.polarity_scores(sentence)
+
+# Print the sentiment scores
+print(sentiment_scores)
+
+# Determine the overall sentiment label
+if sentiment_scores['compound'] >= 0.05:
+    sentiment_label = 'Positive'
+elif sentiment_scores['compound'] <= -0.05:
+    sentiment_label = 'Negative'
+else:
+    sentiment_label = 'Neutral'
+
+# Print the sentiment label
+print('Sentiment Label:', sentiment_label)
